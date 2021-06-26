@@ -12,7 +12,11 @@ const start = async () => {
     try {
         await mongoose.connect(
             "mongodb+srv://user:user@cluster0.vg1vg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-            { useNewUrlParser: true, useUnifiedTopology: true }
+            {
+                useNewUrlParser: true,
+                useUnifiedTopology: true,
+                useCreateIndex: true,
+            }
         );
         app.listen(5000, () => console.log("Server is working on post 5000 "));
     } catch (e) {
