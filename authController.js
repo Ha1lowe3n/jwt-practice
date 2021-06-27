@@ -48,7 +48,7 @@ class authController {
 
             const user = await User.findOne({ username });
             if (!user) {
-                return res.status(400).json({
+                res.status(400).json({
                     message: "Пользователь с таким именем не найден",
                 });
             }
@@ -61,7 +61,7 @@ class authController {
             }
 
             const token = generateAccessToken(user._id, user.roles);
-            return res.json({ token });
+            res.json({ token });
         } catch (e) {
             console.error(e);
             res.status(400).json({ message: "Login error" });
@@ -70,7 +70,8 @@ class authController {
 
     async getUsers(req, res) {
         try {
-            res.json("server is work");
+            const users = await User.find();
+            return res.json(users);
         } catch (e) {}
     }
 }
